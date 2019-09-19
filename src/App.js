@@ -1,24 +1,20 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import {
-  getTrending,
-  getNowPlaying,
-  getTopRated,
-  getPopular
-} from './actions/movie';
-import { connect } from 'react-redux';
+import React, { useEffect, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Navbar, ScrollToTop } from './components/Layout';
 
-function App({ getTrending, getNowPlaying, getTopRated, getPopular }) {
-  useEffect(() => {
-    getTrending();
-    getNowPlaying('movie');
-    getTopRated('movie');
-    getPopular('movie');
-  }, [getTrending, getNowPlaying, getTopRated, getPopular]);
-  return <div className="App">App</div>;
+import './App.css';
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop>
+        <Fragment>
+          <Navbar />
+          {/* <Route exact path="/" component={Landing} /> */}
+        </Fragment>
+      </ScrollToTop>
+    </Router>
+  );
 }
 
-export default connect(
-  null,
-  { getTrending, getNowPlaying, getTopRated, getPopular }
-)(App);
+export default App;
