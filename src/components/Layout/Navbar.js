@@ -9,8 +9,8 @@ const Navbar = () => {
           <div className="menu-left">
             <h2 className="menu-logo">movieDB</h2>
             <ul className="menu-nav">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">
+              <li className="nav-item current">
+                <Link to="/" className="nav-link ">
                   Home
                 </Link>
               </li>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 placeholder="Enter a movie name"
                 className="menu-right-search-bar"
               />
-              <button className="btn menu-right-search-btn">
+              <button className="menu-right-search-btn">
                 {' '}
                 <i className="fas fa-search"></i>
               </button>
