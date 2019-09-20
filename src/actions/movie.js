@@ -118,3 +118,22 @@ export const getTopRated = (type = 'movie') => async dispatch => {
     });
   }
 };
+
+export const getDetail = (id, type = 'movie') => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/${type}/${id}?api_key=${API_KEY}&language=en-US`
+    );
+
+    dispatch({
+      type: GET_DETAIL,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: MOVIE_ERROR,
+      payload: GET_DETAIL,
+      error: err.response.data.status_message
+    });
+  }
+};

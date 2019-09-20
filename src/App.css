@@ -980,6 +980,71 @@ img {
     #header-home .hero-box-header .overview {
       font-size: 1.8rem; }
 
+#header-detail {
+  height: 100vh;
+  overflow: hidden;
+  position: relative; }
+  #header-detail .background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    filter: blur(10px);
+    z-index: 0; }
+  #header-detail .background-main {
+    position: absolute;
+    height: 65%;
+    width: 75%;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-size: cover;
+    background-position: left;
+    box-shadow: inset 600px 0px 50px rgba(0, 0, 0, 0.8); }
+    #header-detail .background-main .movie-poster {
+      width: 100%;
+      height: 30rem;
+      background-position: left;
+      background-size: cover;
+      position: absolute;
+      top: 50%;
+      left: -6rem;
+      transform: translateY(-50%);
+      overflow: hidden;
+      color: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; }
+      #header-detail .background-main .movie-poster img {
+        width: 22rem;
+        object-fit: cover;
+        margin-right: 2.5rem; }
+      #header-detail .background-main .movie-poster .header-movie-detail {
+        width: 32rem; }
+        #header-detail .background-main .movie-poster .header-movie-detail-title {
+          font-size: 2rem;
+          text-transform: uppercase;
+          color: #f1c40f;
+          line-height: 1.2; }
+          #header-detail .background-main .movie-poster .header-movie-detail-title:after {
+            display: block;
+            width: 4rem;
+            height: 4px;
+            content: '';
+            background-color: #f1c40f; }
+        #header-detail .background-main .movie-poster .header-movie-detail-genre {
+          font-size: 1.2rem;
+          color: #c1c1c1;
+          margin: 1rem auto; }
+        #header-detail .background-main .movie-poster .header-movie-detail-desc {
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem; }
+
 .slideshow {
   width: 100%;
   height: 100%;
