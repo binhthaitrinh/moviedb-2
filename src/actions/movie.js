@@ -50,10 +50,12 @@ export const getNowPlaying = (type = 'movie') => async dispatch => {
         `${PATH_BASE}/tv/airing_today?api_key=${API_KEY}&language=en-US&page=1`
       );
     }
-    dispatch({
-      type: GET_NOW_PLAYING,
-      payload: res.data.results
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_NOW_PLAYING,
+        payload: res.data.results
+      });
+    }, 500);
   } catch (err) {
     dispatch({
       type: MOVIE_ERROR,
@@ -75,10 +77,12 @@ export const getPopular = (type = 'movie') => async dispatch => {
         `${PATH_BASE}/tv/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
     }
-    dispatch({
-      type: GET_POPULAR,
-      payload: res.data.results
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_POPULAR,
+        payload: res.data.results
+      });
+    }, 500);
   } catch (err) {
     dispatch({
       type: MOVIE_ERROR,
@@ -100,10 +104,12 @@ export const getTopRated = (type = 'movie') => async dispatch => {
         `${PATH_BASE}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       );
     }
-    dispatch({
-      type: GET_TOP_RATED,
-      payload: res.data.results
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_TOP_RATED,
+        payload: res.data.results
+      });
+    }, 500);
   } catch (err) {
     dispatch({
       type: MOVIE_ERROR,

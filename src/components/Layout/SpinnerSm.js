@@ -5,7 +5,7 @@ const Spinner = () => {
   return (
     <img
       style={{
-        width: '1.5rem',
+        width: '5rem',
         margin: 'auto',
         display: 'block'
       }}

@@ -6,7 +6,8 @@ import {
   GET_POPULAR,
   GET_TOP_RATED,
   GET_TRAILER,
-  MOVIE_ERROR
+  MOVIE_ERROR,
+  SET_LOADING
 } from '../actions/types';
 
 const initialState = {
@@ -21,13 +22,13 @@ const initialState = {
   },
 
   loading: {
-    GET_TRENDING: true,
-    GET_CREDIT: true,
-    GET_DETAIL: true,
-    GET_TOP_RATED: true,
-    GET_NOW_PLAYING: true,
-    GET_POPULAR: true,
-    GET_TRAILER: true
+    [GET_TRENDING]: true,
+    [GET_CREDIT]: true,
+    [GET_DETAIL]: true,
+    [GET_TOP_RATED]: true,
+    [GET_NOW_PLAYING]: true,
+    [GET_POPULAR]: true,
+    [GET_TRAILER]: true
   },
 
   errors: []
@@ -38,7 +39,7 @@ export default function(state = initialState, action) {
 
   let contentType = null;
 
-  if (type !== MOVIE_ERROR) {
+  if (type !== MOVIE_ERROR && type !== '@@INIT' && type !== SET_LOADING) {
     contentType = type;
   }
 
@@ -60,7 +61,16 @@ export default function(state = initialState, action) {
           [contentType]: false
         }
       };
-
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          [GET_TOP_RATED]: true,
+          [GET_NOW_PLAYING]: true,
+          [GET_POPULAR]: true
+        }
+      };
     default:
       return state;
   }

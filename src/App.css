@@ -1063,15 +1063,17 @@ img {
           border-radius: 50%;
           transition: all 0.5s ease-out; }
 
-.section-movie-list .section-heading {
-  font-size: 2.5rem;
-  color: #6ab0de; }
-
-.section-movie-list .movie-carousel-container {
-  background-color: #123851;
-  border-radius: 1rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2rem 2rem; }
+.section-movie-list {
+  min-height: 100vh; }
+  .section-movie-list .section-heading {
+    font-size: 2.5rem;
+    color: #6ab0de; }
+  .section-movie-list .movie-carousel-container {
+    background-color: #123851;
+    border-radius: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 2rem 2rem;
+    min-height: 40rem; }

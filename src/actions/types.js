@@ -7,3 +7,4 @@ export const GET_CREDIT = 'GET_CREDIT';
 export const GET_TRAILER = 'GET_TRAILER';
 export const SEARCH = 'SEARCH';
 export const MOVIE_ERROR = 'MOVIE_ERROR';
+export const SET_LOADING = 'SET_LOADING';
