@@ -248,12 +248,15 @@ img {
           }
 
           .header-movie-detail {
-            width: 32rem;
+            width: 40rem;
             &-title {
-              font-size: 2rem;
+              font-size: 4.5rem;
               text-transform: uppercase;
               color: $secondary-color;
               line-height: 1.2;
+              font-weight: 900;
+              margin-bottom: 1.5rem;
+              margin-top: 1rem;
 
               &:after {
                 display: block;
@@ -265,9 +268,19 @@ img {
             }
 
             &-genre {
-              font-size: 1.2rem;
+              font-size: 1.4rem;
               color: darken($light-color, 20);
-              margin: 1rem auto;
+              margin-bottom: 2rem;
+            }
+
+            &-release {
+              font-size: 1.6rem;
+              background-color: $light-color;
+              display: inline-block;
+              color: $dark-color;
+              padding: 0.2rem 0.8rem;
+              border-radius: 4px;
+              font-weight: 700;
             }
 
             &-desc {
@@ -277,6 +290,17 @@ img {
           }
         }
       }
+    }
+
+    .header-bottom-detail {
+      position: absolute;
+      z-index: 6;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: $website-width;
+      height: 7rem;
+      background-color: $main-color;
     }
   }
 }

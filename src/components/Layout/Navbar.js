@@ -7,7 +7,10 @@ const Navbar = () => {
       <div className="container">
         <nav className="menu">
           <div className="menu-left">
-            <h2 className="menu-logo">movieDB</h2>
+            <Link to="/">
+              <h2 className="menu-logo">movieDB</h2>
+            </Link>
+
             <ul className="menu-nav">
               <li className="nav-item current">
                 <Link to="/" className="nav-link ">

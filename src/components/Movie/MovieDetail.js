@@ -30,11 +30,17 @@ const MovieDetail = ({ match, getDetail, details, loading }) => {
             />
 
             <div className="header-movie-detail">
-              <h1 className="header-movie-detail-title">{details.title}</h1>
-              <p className="header-movie-detail-genre">
-                {details.genres.map(genre => genre.name).join(' - ')}
+              <p className="header-movie-detail-release">
+                {details.tagline || 'No tagline found'}
               </p>
-              <p className="header-movie-detail-desc">{details.overview}</p>
+              <h1 className="header-movie-detail-title">{details.title}</h1>
+
+              <p className="header-movie-detail-genre">
+                {details.runtime +
+                  ' min | ' +
+                  details.genres.map(genre => genre.name).join(' - ')}
+              </p>
+
               <Link className="btn btn-primary">
                 <p>Read more</p>
                 <div className="overlay"></div>
@@ -42,6 +48,8 @@ const MovieDetail = ({ match, getDetail, details, loading }) => {
             </div>
           </div>
         </div>
+
+        <div className="header-bottom-detail"></div>
       </header>
     </>
   );

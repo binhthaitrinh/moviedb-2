@@ -1025,12 +1025,15 @@ img {
         object-fit: cover;
         margin-right: 2.5rem; }
       #header-detail .background-main .movie-poster .header-movie-detail {
-        width: 32rem; }
+        width: 40rem; }
         #header-detail .background-main .movie-poster .header-movie-detail-title {
-          font-size: 2rem;
+          font-size: 4.5rem;
           text-transform: uppercase;
           color: #f1c40f;
-          line-height: 1.2; }
+          line-height: 1.2;
+          font-weight: 900;
+          margin-bottom: 1.5rem;
+          margin-top: 1rem; }
           #header-detail .background-main .movie-poster .header-movie-detail-title:after {
             display: block;
             width: 4rem;
@@ -1038,12 +1041,29 @@ img {
             content: '';
             background-color: #f1c40f; }
         #header-detail .background-main .movie-poster .header-movie-detail-genre {
-          font-size: 1.2rem;
+          font-size: 1.4rem;
           color: #c1c1c1;
-          margin: 1rem auto; }
+          margin-bottom: 2rem; }
+        #header-detail .background-main .movie-poster .header-movie-detail-release {
+          font-size: 1.6rem;
+          background-color: #f4f4f4;
+          display: inline-block;
+          color: #333;
+          padding: 0.2rem 0.8rem;
+          border-radius: 4px;
+          font-weight: 700; }
         #header-detail .background-main .movie-poster .header-movie-detail-desc {
           font-size: 1.4rem;
           margin-bottom: 1.5rem; }
+  #header-detail .header-bottom-detail {
+    position: absolute;
+    z-index: 6;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 1280px;
+    height: 7rem;
+    background-color: #2980b9; }
 
 .slideshow {
   width: 100%;
