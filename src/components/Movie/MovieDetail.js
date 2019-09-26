@@ -1,13 +1,23 @@
 import React, { useEffect } from "react";
-import { getDetail } from "../../actions/movie";
+import { getDetail, getCredit } from "../../actions/movie";
 import { connect } from "react-redux";
 import Spinner from "../Layout/Spinner";
 import { Link } from "react-router-dom";
+import ActorCarousel from "../Carousels/ActorCarousel";
 
-const MovieDetail = ({ match, getDetail, details, loading }) => {
+const MovieDetail = ({
+  match,
+  getDetail,
+  details,
+  loading,
+  getCredit,
+  credits,
+  creditLoading
+}) => {
   useEffect(() => {
     getDetail(match.params.id);
-  }, [getDetail]);
+    getCredit(match.params.id);
+  }, [getDetail, getCredit]);
   return loading ? (
     <Spinner />
   ) : (
@@ -82,16 +92,51 @@ const MovieDetail = ({ match, getDetail, details, loading }) => {
           </ul>
         </div>
       </header>
+
+      <div className="movie-details-body">
+        <div className="movie-details-body-poster">
+          <img
+            src={`https://image.tmdb.org/t/p/w1280${details.poster_path}`}
+            alt=""
+          />
+          <h4 className="title">{details.title}</h4>
+        </div>
+        <div className="movie-details-body-content">
+          <div className="overview mb-3">
+            <h4 className="title">Overview</h4>
+            <p className="text-body my-1">{details.overview}</p>
+            <p className="text-body">
+              <span className="text-bold text-primary">Produced by: </span>
+              {details.production_companies
+                .map(company => company.name)
+                .join(", ")}
+            </p>
+            <p className="text-body">
+              <span className="text-bold text-primary">Available in: </span>
+              {details.spoken_languages
+                .map(language => language.name)
+                .join(", ")}
+            </p>
+          </div>
+
+          <div className="cast">
+            {creditLoading ? null : <ActorCarousel movieCredit={credits} />}
+          </div>
+        </div>
+        <div className="movie-details-body-video"></div>
+      </div>
     </>
   );
 };
 
 const mapStateToProps = state => ({
   details: state.movie.movie.GET_DETAIL,
-  loading: state.movie.loading.GET_DETAIL
+  loading: state.movie.loading.GET_DETAIL,
+  creditLoading: state.movie.loading.GET_CREDIT,
+  credits: state.movie.movie.GET_CREDIT
 });
 
 export default connect(
   mapStateToProps,
-  { getDetail }
+  { getDetail, getCredit }
 )(MovieDetail);

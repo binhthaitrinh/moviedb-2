@@ -214,7 +214,7 @@
     font-weight: 900;
     margin-bottom: 1rem; }
     .swiper-slide .carousel-movie-title:after {
-      content: '';
+      content: "";
       display: block;
       width: 3rem;
       height: 3px;
@@ -229,6 +229,54 @@
   .swiper-slide:hover .carousel-movie-info {
     visibility: visible;
     opacity: 1; }
+
+.actor-container {
+  height: 22rem; }
+  .actor-container .swiper-slide {
+    border-radius: 2px;
+    position: relative; }
+    .actor-container .swiper-slide .overlay {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0.8;
+      transform: scale(2) rotate(45deg) translateX(-45%) translateY(-85%);
+      background-color: #2980b9;
+      transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1); }
+    .actor-container .swiper-slide:hover .overlay {
+      transform: scale(2) translateX(0) translateY(0) rotate(0deg); }
+    .actor-container .swiper-slide .actor-info {
+      position: absolute;
+      z-index: 2;
+      opacity: 0;
+      visibility: hidden;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s ease-out; }
+      .actor-container .swiper-slide .actor-info-name {
+        font-size: 1.4rem; }
+        .actor-container .swiper-slide .actor-info-name:after {
+          content: "";
+          display: block;
+          height: 3px;
+          width: 4rem;
+          background-color: #f1c40f;
+          margin: auto; }
+      .actor-container .swiper-slide .actor-info-title {
+        font-size: 1.2rem; }
+    .actor-container .swiper-slide:hover .actor-info {
+      opacity: 1;
+      visibility: visible; }
 
 /**
  * Swiper 4.5.0
@@ -1204,3 +1252,41 @@ img {
     flex-direction: column;
     padding: 2rem 2rem;
     min-height: 40rem; }
+
+.movie-details-body {
+  min-height: 100vh;
+  max-width: 1280px;
+  background-color: #f4f4f4;
+  margin: auto;
+  display: grid;
+  grid-template-areas: "poster content video";
+  grid-template-columns: 1fr 2.5fr 1.5fr; }
+  .movie-details-body-poster {
+    grid-area: poster;
+    padding: 2.5rem 2rem; }
+    .movie-details-body-poster .title {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-top: 1.5rem;
+      color: #2980b9; }
+  .movie-details-body-content {
+    grid-area: content;
+    padding: 6rem 2rem;
+    overflow: hidden; }
+    .movie-details-body-content .title {
+      font-size: 2.5rem;
+      color: #2980b9; }
+      .movie-details-body-content .title:after {
+        display: block;
+        content: "";
+        width: 5rem;
+        height: 3px;
+        background-color: #2980b9;
+        margin-bottom: 1.5rem; }
+    .movie-details-body-content .text-body {
+      color: #333;
+      font-size: 1.4rem;
+      line-height: 2; }
+  .movie-details-body-video {
+    grid-area: video;
+    background-color: #999999; }

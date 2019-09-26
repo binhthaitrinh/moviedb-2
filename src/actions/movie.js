@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   GET_TRENDING,
   GET_CREDIT,
@@ -8,9 +8,9 @@ import {
   GET_TOP_RATED,
   GET_TRAILER,
   MOVIE_ERROR
-} from './types';
+} from "./types";
 
-import { API_KEY, PATH_BASE } from '../constants/movieDB';
+import { API_KEY, PATH_BASE } from "../constants/movieDB";
 
 const config = {
   headers: null
@@ -38,10 +38,10 @@ export const getTrending = () => async dispatch => {
   }
 };
 
-export const getNowPlaying = (type = 'movie') => async dispatch => {
+export const getNowPlaying = (type = "movie") => async dispatch => {
   let res = null;
   try {
-    if (type === 'movie') {
+    if (type === "movie") {
       res = await axios.get(
         `${PATH_BASE}/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -65,10 +65,10 @@ export const getNowPlaying = (type = 'movie') => async dispatch => {
   }
 };
 
-export const getPopular = (type = 'movie') => async dispatch => {
+export const getPopular = (type = "movie") => async dispatch => {
   let res = null;
   try {
-    if (type === 'movie') {
+    if (type === "movie") {
       res = await axios.get(
         `${PATH_BASE}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -92,10 +92,10 @@ export const getPopular = (type = 'movie') => async dispatch => {
   }
 };
 
-export const getTopRated = (type = 'movie') => async dispatch => {
+export const getTopRated = (type = "movie") => async dispatch => {
   let res = null;
   try {
-    if (type === 'movie') {
+    if (type === "movie") {
       res = await axios.get(
         `${PATH_BASE}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -119,7 +119,7 @@ export const getTopRated = (type = 'movie') => async dispatch => {
   }
 };
 
-export const getDetail = (id, type = 'movie') => async dispatch => {
+export const getDetail = (id, type = "movie") => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/${type}/${id}?api_key=${API_KEY}&language=en-US`
@@ -136,4 +136,17 @@ export const getDetail = (id, type = 'movie') => async dispatch => {
       error: err.response.data.status_message
     });
   }
+};
+
+export const getCredit = (id, type = "movie") => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/${type}/${id}/credits?api_key=${API_KEY}`
+    );
+
+    dispatch({
+      type: GET_CREDIT,
+      payload: res.data.cast
+    });
+  } catch (err) {}
 };

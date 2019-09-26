@@ -512,4 +512,58 @@ img {
   }
 }
 
+.movie-details-body {
+  min-height: 100vh;
+  max-width: $website-width;
+  background-color: $light-color;
+  margin: auto;
+  display: grid;
+  grid-template-areas: "poster content video";
+  grid-template-columns: 1fr 2.5fr 1.5fr;
+
+  &-poster {
+    grid-area: poster;
+    // background-color: lighten($main-color, 30);
+    padding: 2.5rem 2rem;
+
+    .title {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-top: 1.5rem;
+      color: $main-color;
+    }
+  }
+
+  &-content {
+    grid-area: content;
+    padding: 6rem 2rem;
+    overflow: hidden;
+
+    .title {
+      font-size: 2.5rem;
+      color: $main-color;
+
+      &:after {
+        display: block;
+        content: "";
+        width: 5rem;
+        height: 3px;
+        background-color: $main-color;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .text-body {
+      color: $dark-color;
+      font-size: 1.4rem;
+      line-height: 2;
+    }
+  }
+
+  &-video {
+    grid-area: video;
+    background-color: darken($medium-color, 20);
+  }
+}
+
 @import "mobile";
