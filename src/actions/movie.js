@@ -6,7 +6,7 @@ import {
   GET_NOW_PLAYING,
   GET_POPULAR,
   GET_TOP_RATED,
-  GET_TRAILER,
+  GET_TRAILER, GET_REVIEWS,
   MOVIE_ERROR
 } from "./types";
 
@@ -148,5 +148,31 @@ export const getCredit = (id, type = "movie") => async dispatch => {
       type: GET_CREDIT,
       payload: res.data.cast
     });
-  } catch (err) {}
+  } catch (err) { }
+};
+
+export const getTrailer = (id, type = "movie") => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/${type}/${id}/videos?api_key=${API_KEY}`
+    );
+
+    dispatch({
+      type: GET_TRAILER,
+      payload: res.data.results
+    });
+  } catch (err) { }
+};
+
+export const getReviews = (id, type = "movie") => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/${type}/${id}/reviews?api_key=${API_KEY}`
+    );
+
+    dispatch({
+      type: GET_REVIEWS,
+      payload: res.data.results
+    });
+  } catch (err) { }
 };

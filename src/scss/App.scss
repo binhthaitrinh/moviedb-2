@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  backface-visibility: hidden;
 }
 
 html,
@@ -18,6 +19,7 @@ body {
   line-height: 1.6;
   height: 100%;
   width: 100%;
+  backface-visibility: hidden;
 }
 
 a {
@@ -558,11 +560,52 @@ img {
       font-size: 1.4rem;
       line-height: 2;
     }
+
+    .reviews {
+      .review {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        color: $dark-color;
+        margin-bottom: 2rem;
+        img {
+          width: 150px;
+          margin-right: 2.5rem;
+        }
+        
+        &-details {
+          .review-author {
+            font-size: 1.8rem;
+            color: $main-color;
+          }
+
+          .review-content {
+            font-size: 1.2rem;
+          }
+
+          .review-link {
+            font-size: 1rem;
+            color: $main-color;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 
   &-video {
     grid-area: video;
-    background-color: darken($medium-color, 20);
+    background-color: darken($medium-color, 40);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0 2rem 0;
+
+    .title {
+      font-size: 2.5rem;
+   
+    }
   }
 }
 

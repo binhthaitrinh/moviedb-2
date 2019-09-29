@@ -7,7 +7,7 @@ import {
   GET_TOP_RATED,
   GET_TRAILER,
   MOVIE_ERROR,
-  SET_LOADING
+  SET_LOADING, GET_REVIEWS
 } from '../actions/types';
 
 const initialState = {
@@ -18,7 +18,8 @@ const initialState = {
     GET_TOP_RATED: null,
     GET_NOW_PLAYING: null,
     GET_POPULAR: null,
-    GET_TRAILER: null
+    GET_TRAILER: null,
+    GET_REVIEWS: null,
   },
 
   loading: {
@@ -28,13 +29,14 @@ const initialState = {
     [GET_TOP_RATED]: true,
     [GET_NOW_PLAYING]: true,
     [GET_POPULAR]: true,
-    [GET_TRAILER]: true
+    [GET_TRAILER]: true,
+    [GET_REVIEWS]: true
   },
 
   errors: []
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   let contentType = null;

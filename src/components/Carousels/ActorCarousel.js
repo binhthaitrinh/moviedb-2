@@ -30,7 +30,7 @@ const ActorCarousel = ({ movieCredit }) => {
       }
     });
 
-    return slider;
+    // return slider;
   });
 
   return (
@@ -39,7 +39,7 @@ const ActorCarousel = ({ movieCredit }) => {
         {movieCredit.map(actor => (
           <Link
             to={`/`}
-            key={actor.id}
+            key={actor.cast_id}
             className="swiper-slide"
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/w185${actor.profile_path})`
