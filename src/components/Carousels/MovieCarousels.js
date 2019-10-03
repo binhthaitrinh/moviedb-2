@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import Swiper from "swiper";
-import { Link } from "react-router-dom";
-import { movieGenre, TvGenre } from "../../constants/Genre";
+import React, { useEffect, useRef } from 'react';
+import Swiper from 'swiper';
+import { Link } from 'react-router-dom';
+import { movieGenre, TvGenre } from '../../constants/Genre';
 
-const MovieCarousels = ({ movies, type = "movie" }) => {
+const MovieCarousels = ({ movies, type = 'movie' }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
+    console.log(type);
     const slider = new Swiper(swiperRef.current, {
       slidesPerView: 5,
       spaceBetween: 30,
@@ -22,19 +23,19 @@ const MovieCarousels = ({ movies, type = "movie" }) => {
       //   }
       // },
       pagination: {
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         clickable: true
       },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
       }
     });
   });
 
   const helper = id => {
-    let result = "";
-    if (type === "movie") {
+    let result = '';
+    if (type === 'movie') {
       movieGenre.genres.forEach(genre => {
         if (genre.id === id) {
           result = genre.name;
@@ -52,34 +53,34 @@ const MovieCarousels = ({ movies, type = "movie" }) => {
   };
 
   return (
-    <div className="swiper-container" ref={swiperRef}>
-      <div className="swiper-wrapper">
+    <div className='swiper-container' ref={swiperRef}>
+      <div className='swiper-wrapper'>
         {movies.map(movie => (
           <Link
             to={`/${type}/details/${movie.id}`}
             key={movie.id}
-            className="swiper-slide"
+            className='swiper-slide'
             style={{
               backgroundImage: `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
             }}
           >
-            <div className="carousel-movie-overlay"></div>
-            <div className="carousel-movie-info">
-              <h3 className="carousel-movie-title">
-                {type === "tv"
+            <div className='carousel-movie-overlay'></div>
+            <div className='carousel-movie-info'>
+              <h3 className='carousel-movie-title'>
+                {movie.name
                   ? movie.name
-                      .split(" ")
+                      .split(' ')
                       .splice(0, 10)
-                      .join(" ") + "..."
+                      .join(' ') + '...'
                   : movie.title
-                      .split(" ")
+                      .split(' ')
                       .slice(0, 10)
-                      .join(" ")}
+                      .join(' ')}
               </h3>
-              <p className="carousel-movie-genre">
-                {movie.genre_ids.map(id => helper(id)).join(", ")}
+              <p className='carousel-movie-genre'>
+                {movie.genre_ids.map(id => helper(id)).join(', ')}
               </p>
-              <div className="carousel-movie-vote">
+              <div className='carousel-movie-vote'>
                 <p>{movie.vote_average}</p>
               </div>
             </div>
@@ -87,10 +88,10 @@ const MovieCarousels = ({ movies, type = "movie" }) => {
         ))}
       </div>
 
-      <div className="swiper-pagination" />
+      <div className='swiper-pagination' />
 
-      <div className="swiper-button-next" />
-      <div className="swiper-button-prev" />
+      <div className='swiper-button-next' />
+      <div className='swiper-button-prev' />
     </div>
   );
 };

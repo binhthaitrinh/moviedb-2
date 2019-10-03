@@ -286,7 +286,7 @@
       margin-bottom: 1rem;
 
       &:after {
-        content: "";
+        content: '';
         display: block;
         width: 3rem;
         height: 3px;
@@ -355,7 +355,7 @@
         font-size: 1.4rem;
 
         &:after {
-          content: "";
+          content: '';
           display: block;
           height: 3px;
           width: 4rem;
@@ -366,6 +366,7 @@
 
       &-title {
         font-size: 1.2rem;
+        text-align: center;
       }
 
       @include easeOut;

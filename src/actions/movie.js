@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   GET_TRENDING,
   GET_CREDIT,
@@ -6,11 +6,12 @@ import {
   GET_NOW_PLAYING,
   GET_POPULAR,
   GET_TOP_RATED,
-  GET_TRAILER, GET_REVIEWS,
+  GET_TRAILER,
+  GET_REVIEWS,
   MOVIE_ERROR
-} from "./types";
+} from './types';
 
-import { API_KEY, PATH_BASE } from "../constants/movieDB";
+import { API_KEY, PATH_BASE } from '../constants/movieDB';
 
 const config = {
   headers: null
@@ -38,10 +39,10 @@ export const getTrending = () => async dispatch => {
   }
 };
 
-export const getNowPlaying = (type = "movie") => async dispatch => {
+export const getNowPlaying = (type = 'movie') => async dispatch => {
   let res = null;
   try {
-    if (type === "movie") {
+    if (type === 'movie') {
       res = await axios.get(
         `${PATH_BASE}/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -65,10 +66,10 @@ export const getNowPlaying = (type = "movie") => async dispatch => {
   }
 };
 
-export const getPopular = (type = "movie") => async dispatch => {
+export const getPopular = (type = 'movie') => async dispatch => {
   let res = null;
   try {
-    if (type === "movie") {
+    if (type === 'movie') {
       res = await axios.get(
         `${PATH_BASE}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -92,10 +93,10 @@ export const getPopular = (type = "movie") => async dispatch => {
   }
 };
 
-export const getTopRated = (type = "movie") => async dispatch => {
+export const getTopRated = (type = 'movie') => async dispatch => {
   let res = null;
   try {
-    if (type === "movie") {
+    if (type === 'movie') {
       res = await axios.get(
         `${PATH_BASE}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -119,7 +120,7 @@ export const getTopRated = (type = "movie") => async dispatch => {
   }
 };
 
-export const getDetail = (id, type = "movie") => async dispatch => {
+export const getDetail = (id, type = 'movie') => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/${type}/${id}?api_key=${API_KEY}&language=en-US`
@@ -138,7 +139,7 @@ export const getDetail = (id, type = "movie") => async dispatch => {
   }
 };
 
-export const getCredit = (id, type = "movie") => async dispatch => {
+export const getCredit = (id, type = 'movie') => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/${type}/${id}/credits?api_key=${API_KEY}`
@@ -148,10 +149,10 @@ export const getCredit = (id, type = "movie") => async dispatch => {
       type: GET_CREDIT,
       payload: res.data.cast
     });
-  } catch (err) { }
+  } catch (err) {}
 };
 
-export const getTrailer = (id, type = "movie") => async dispatch => {
+export const getTrailer = (id, type = 'movie') => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/${type}/${id}/videos?api_key=${API_KEY}`
@@ -161,10 +162,10 @@ export const getTrailer = (id, type = "movie") => async dispatch => {
       type: GET_TRAILER,
       payload: res.data.results
     });
-  } catch (err) { }
+  } catch (err) {}
 };
 
-export const getReviews = (id, type = "movie") => async dispatch => {
+export const getReviews = (id, type = 'movie') => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/${type}/${id}/reviews?api_key=${API_KEY}`
@@ -174,5 +175,18 @@ export const getReviews = (id, type = "movie") => async dispatch => {
       type: GET_REVIEWS,
       payload: res.data.results
     });
-  } catch (err) { }
+  } catch (err) {}
+};
+
+export const searchMovies = query => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/search/multi/?api_key=${API_KEY}&query=${query}`
+    );
+
+    dispatch({
+      type: 'SEARCH_MOVIES',
+      payload: res.data.results.splice(0, 5)
+    });
+  } catch (err) {}
 };

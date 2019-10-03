@@ -31,33 +31,37 @@ const Header = ({ movies }) => {
   };
 
   return (
-    <header id="header-home">
+    <header id='header-home'>
       {transitions.map(({ item, props, key }) => (
         <animated.div
           key={key}
-          className="slideshow"
+          className='slideshow'
           style={{
             ...props,
             backgroundImage: `url(https://image.tmdb.org/t/p/w1280${item.backdrop_path}`
-          }}>
-          <div className="hero-box-header">
-            <h3 className="genre">
+          }}
+        >
+          <div className='hero-box-header'>
+            <h3 className='genre'>
               {item.genre_ids.map(id => helper(id)).join(' - ')}
             </h3>
-            <h1 className="title">{item.title || item.name || 'Unknown'}</h1>
-            <h3 className="showtime mb-2">{item.release_date}</h3>
-            <p className="overview mb-2">{`${item.overview
+            <h1 className='title'>{item.title || item.name || 'Unknown'}</h1>
+            <h3 className='showtime mb-2'>{item.release_date}</h3>
+            <p className='overview mb-2'>{`${item.overview
               .split(' ')
               .splice(0, 60)
               .join(' ')}...`}</p>
-            <div className="action-btn">
-              <Link to="/" className="btn-primary mr-2">
+            <div className='action-btn'>
+              <Link
+                to={`/${item.media_type}/details/${item.id}`}
+                className='btn-primary mr-2'
+              >
                 <p>More info</p>
-                <div className="overlay"></div>
+                <div className='overlay'></div>
               </Link>
-              <Link to="/" className="btn-second">
+              <Link to='/' className='btn-second'>
                 <p>Add to list</p>
-                <div className="overlay"></div>
+                <div className='overlay'></div>
               </Link>
             </div>
           </div>

@@ -1,7 +1,7 @@
-@import "config";
-@import "utilities";
-@import "swiper";
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
+@import 'config';
+@import 'utilities';
+@import 'swiper';
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 * {
   margin: 0;
@@ -13,7 +13,7 @@
 html,
 body {
   font-size: 67.5%;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   background: $dark-color;
   color: $light-color;
   line-height: 1.6;
@@ -44,6 +44,10 @@ img {
   top: 0;
   left: 0;
 
+  .container {
+    overflow: visible !important;
+  }
+
   .menu {
     display: flex;
     justify-content: space-between;
@@ -70,6 +74,7 @@ img {
           padding: 2.5rem 1.4rem;
           border-bottom: 6px solid transparent;
           border-top: 6px solid transparent;
+          @include easeOut;
 
           &:hover {
             background-color: $main-color;
@@ -104,6 +109,8 @@ img {
 
       form {
         display: flex;
+        position: relative;
+
         justify-content: space-between;
         width: 25rem;
         align-items: center;
@@ -113,15 +120,15 @@ img {
         border-radius: 10rem;
         @include easeOut;
 
-        &:focus-within {
-          transform: translateY(-2px);
-          box-shadow: 0 0.7rem 3rem rgba(101, 90, 86, 0.08);
-        }
+        // &:focus-within {
+        //   transform: translateY(-2px);
+        //   box-shadow: 0 0.7rem 3rem rgba(101, 90, 86, 0.08);
+        // }
 
         .menu-right-search-bar {
           border: none;
           background: none;
-          width: 15rem;
+          width: 100%;
           font-size: 1.4rem;
 
           &:focus {
@@ -140,6 +147,63 @@ img {
           padding-left: 1rem;
           cursor: pointer;
           outline: none;
+        }
+
+        .result-container {
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-height: 10rem;
+          background-color: $dark-color;
+          z-index: -1;
+          border-top-left-radius: 2rem;
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border-top-right-radius: 2rem;
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          padding-top: 5rem;
+
+          .see-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            padding: 0.8rem 0;
+            background-color: $main-color;
+            color: $light-color;
+            font-weight: 700;
+          }
+
+          .result-item {
+            display: flex;
+            align-items: center;
+            color: $light-color;
+            font-size: 1.4rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            @include easeOut;
+
+            &.highlighted {
+              background-color: darken($dark-color, 10);
+            }
+
+            &:hover {
+              background-color: darken($dark-color, 10);
+            }
+
+            img {
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              margin-right: 1.5rem;
+            }
+
+            h4 {
+              font-size: 1.2rem;
+              line-height: 1.2;
+            }
+          }
         }
       }
     }
@@ -230,7 +294,7 @@ img {
 
         .movie-poster {
           width: 100%;
-          height: 30rem;
+          min-height: 30rem;
           background-position: left;
           background-size: cover;
           position: absolute;
@@ -245,6 +309,7 @@ img {
 
           img {
             width: 22rem;
+            height: 30rem;
             object-fit: cover;
             margin-right: 2.5rem;
           }
@@ -264,7 +329,7 @@ img {
                 display: block;
                 width: 4rem;
                 height: 4px;
-                content: "";
+                content: '';
                 background-color: $secondary-color;
               }
             }
@@ -327,7 +392,7 @@ img {
             color: darken($main-color, 20);
 
             &:after {
-              content: "";
+              content: '';
               display: block;
               width: 2.5rem;
               height: 3px;
@@ -380,7 +445,7 @@ img {
   background-position: center;
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -520,7 +585,7 @@ img {
   background-color: $light-color;
   margin: auto;
   display: grid;
-  grid-template-areas: "poster content video";
+  grid-template-areas: 'poster content video';
   grid-template-columns: 1fr 2.5fr 1.5fr;
 
   &-poster {
@@ -547,7 +612,7 @@ img {
 
       &:after {
         display: block;
-        content: "";
+        content: '';
         width: 5rem;
         height: 3px;
         background-color: $main-color;
@@ -572,7 +637,7 @@ img {
           width: 150px;
           margin-right: 2.5rem;
         }
-        
+
         &-details {
           .review-author {
             font-size: 1.8rem;
@@ -604,9 +669,8 @@ img {
 
     .title {
       font-size: 2.5rem;
-   
     }
   }
 }
 
-@import "mobile";
+@import 'mobile';

@@ -7,7 +7,8 @@ import {
   GET_TOP_RATED,
   GET_TRAILER,
   MOVIE_ERROR,
-  SET_LOADING, GET_REVIEWS
+  SET_LOADING,
+  GET_REVIEWS
 } from '../actions/types';
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
     GET_NOW_PLAYING: null,
     GET_POPULAR: null,
     GET_TRAILER: null,
-    GET_REVIEWS: null,
+    GET_REVIEWS: null
   },
 
   loading: {
@@ -30,13 +31,14 @@ const initialState = {
     [GET_NOW_PLAYING]: true,
     [GET_POPULAR]: true,
     [GET_TRAILER]: true,
-    [GET_REVIEWS]: true
+    [GET_REVIEWS]: true,
+    ['SEARCH_MOVIES']: true
   },
 
   errors: []
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   const { type, payload } = action;
 
   let contentType = null;
@@ -50,6 +52,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         errors: [payload, ...state.errors]
+      };
+    case 'MOVIE_LOADING':
+      return {
+        ...state,
+        loading: {
+          ['GET_DETAIL']: true
+        }
       };
     case contentType:
       return {

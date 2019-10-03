@@ -18,18 +18,24 @@ const MainContent = ({
 
   useEffect(() => {
     getPopular(type);
+  }, [getPopular, type]);
+
+  useEffect(() => {
     getNowPlaying(type);
+  }, [getNowPlaying, type]);
+
+  useEffect(() => {
     getTopRated(type);
-  }, [getPopular, getTopRated, getNowPlaying, type]);
+  }, [getTopRated, type]);
 
   return (
-    <div className="main-content">
-      <div className="container">
-        <div className="type-selector">
-          <label htmlFor="type-toggle">
+    <div className='main-content'>
+      <div className='container'>
+        <div className='type-selector'>
+          <label htmlFor='type-toggle'>
             <input
-              type="checkbox"
-              id="type-toggle"
+              type='checkbox'
+              id='type-toggle'
               onChange={e => {
                 e.target.checked ? setType('tv') : setType('movie');
                 store.dispatch({
@@ -37,33 +43,33 @@ const MainContent = ({
                 });
               }}
             />
-            <span className="type-holder">
-              <span className="type-movie">Movie</span>
-              <span className="type-tv">TV shows</span>
-              <span className="slider"></span>
+            <span className='type-holder'>
+              <span className='type-movie'>Movie</span>
+              <span className='type-tv'>TV shows</span>
+              <span className='slider'></span>
             </span>
           </label>
         </div>
 
-        <div className="section-movie-list">
-          <div className="movie-carousel-container mb-2">
-            <h2 className="section-heading mb-1">Popular Movies</h2>
+        <div className='section-movie-list'>
+          <div className='movie-carousel-container mb-2'>
+            <h2 className='section-heading mb-1'>Popular Movies</h2>
             {loading.GET_POPULAR ? (
               <SpinnerSm />
             ) : (
               <MovieCarousels movies={popular} type={type} />
             )}
           </div>
-          <div className="movie-carousel-container mb-2">
-            <h2 className="section-heading mb-1">Now Playing Movies</h2>
+          <div className='movie-carousel-container mb-2'>
+            <h2 className='section-heading mb-1'>Now Playing Movies</h2>
             {loading.GET_NOW_PLAYING ? (
               <SpinnerSm />
             ) : (
               <MovieCarousels movies={nowPlaying} type={type} />
             )}
           </div>
-          <div className="movie-carousel-container">
-            <h2 className="section-heading mb-1">Top Rated Movies</h2>
+          <div className='movie-carousel-container'>
+            <h2 className='section-heading mb-1'>Top Rated Movies</h2>
             {loading.GET_TOP_RATED ? (
               <SpinnerSm />
             ) : (

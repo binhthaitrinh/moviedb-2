@@ -214,7 +214,7 @@
     font-weight: 900;
     margin-bottom: 1rem; }
     .swiper-slide .carousel-movie-title:after {
-      content: "";
+      content: '';
       display: block;
       width: 3rem;
       height: 3px;
@@ -266,14 +266,15 @@
       .actor-container .swiper-slide .actor-info-name {
         font-size: 1.4rem; }
         .actor-container .swiper-slide .actor-info-name:after {
-          content: "";
+          content: '';
           display: block;
           height: 3px;
           width: 4rem;
           background-color: #f1c40f;
           margin: auto; }
       .actor-container .swiper-slide .actor-info-title {
-        font-size: 1.2rem; }
+        font-size: 1.2rem;
+        text-align: center; }
     .actor-container .swiper-slide:hover .actor-info {
       opacity: 1;
       visibility: visible; }
@@ -903,7 +904,7 @@ button.swiper-pagination-bullet {
 html,
 body {
   font-size: 67.5%;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   background: #333;
   color: #f4f4f4;
   line-height: 1.6;
@@ -929,6 +930,8 @@ img {
   width: 100%;
   top: 0;
   left: 0; }
+  .navbar .container {
+    overflow: visible !important; }
   .navbar .menu {
     display: flex;
     justify-content: space-between;
@@ -949,7 +952,8 @@ img {
           align-items: center;
           padding: 2.5rem 1.4rem;
           border-bottom: 6px solid transparent;
-          border-top: 6px solid transparent; }
+          border-top: 6px solid transparent;
+          transition: all 0.5s ease-out; }
           .navbar .menu .menu-left .menu-nav .nav-item:hover {
             background-color: #2980b9;
             border-bottom: 6px solid #f1c40f;
@@ -972,6 +976,7 @@ img {
         border-radius: 50%; }
       .navbar .menu .menu-right form {
         display: flex;
+        position: relative;
         justify-content: space-between;
         width: 25rem;
         align-items: center;
@@ -980,13 +985,10 @@ img {
         padding-left: 1.5rem;
         border-radius: 10rem;
         transition: all 0.5s ease-out; }
-        .navbar .menu .menu-right form:focus-within {
-          transform: translateY(-2px);
-          box-shadow: 0 0.7rem 3rem rgba(101, 90, 86, 0.08); }
         .navbar .menu .menu-right form .menu-right-search-bar {
           border: none;
           background: none;
-          width: 15rem;
+          width: 100%;
           font-size: 1.4rem; }
           .navbar .menu .menu-right form .menu-right-search-bar:focus {
             outline: none; }
@@ -999,6 +1001,49 @@ img {
           padding-left: 1rem;
           cursor: pointer;
           outline: none; }
+        .navbar .menu .menu-right form .result-container {
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-height: 10rem;
+          background-color: #333;
+          z-index: -1;
+          border-top-left-radius: 2rem;
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border-top-right-radius: 2rem;
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+          padding-top: 5rem; }
+          .navbar .menu .menu-right form .result-container .see-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            padding: 0.8rem 0;
+            background-color: #2980b9;
+            color: #f4f4f4;
+            font-weight: 700; }
+          .navbar .menu .menu-right form .result-container .result-item {
+            display: flex;
+            align-items: center;
+            color: #f4f4f4;
+            font-size: 1.4rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            transition: all 0.5s ease-out; }
+            .navbar .menu .menu-right form .result-container .result-item.highlighted {
+              background-color: #1a1a1a; }
+            .navbar .menu .menu-right form .result-container .result-item:hover {
+              background-color: #1a1a1a; }
+            .navbar .menu .menu-right form .result-container .result-item img {
+              width: 40px;
+              height: 40px;
+              object-fit: cover;
+              margin-right: 1.5rem; }
+            .navbar .menu .menu-right form .result-container .result-item h4 {
+              font-size: 1.2rem;
+              line-height: 1.2; }
 
 #header-home {
   height: 100vh;
@@ -1058,7 +1103,7 @@ img {
     box-shadow: inset 600px 0px 50px rgba(0, 0, 0, 0.8); }
     #header-detail .background-main .movie-poster {
       width: 100%;
-      height: 30rem;
+      min-height: 30rem;
       background-position: left;
       background-size: cover;
       position: absolute;
@@ -1072,6 +1117,7 @@ img {
       justify-content: flex-start; }
       #header-detail .background-main .movie-poster img {
         width: 22rem;
+        height: 30rem;
         object-fit: cover;
         margin-right: 2.5rem; }
       #header-detail .background-main .movie-poster .header-movie-detail {
@@ -1088,7 +1134,7 @@ img {
             display: block;
             width: 4rem;
             height: 4px;
-            content: "";
+            content: '';
             background-color: #f1c40f; }
         #header-detail .background-main .movie-poster .header-movie-detail-genre {
           font-size: 1.4rem;
@@ -1134,7 +1180,7 @@ img {
           line-height: 1.3;
           color: #164666; }
           #header-detail .header-bottom-detail-stats .item .title:after {
-            content: "";
+            content: '';
             display: block;
             width: 2.5rem;
             height: 3px;
@@ -1168,7 +1214,7 @@ img {
   background-size: cover;
   background-position: center; }
   .slideshow:after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -1261,7 +1307,7 @@ img {
   background-color: #f4f4f4;
   margin: auto;
   display: grid;
-  grid-template-areas: "poster content video";
+  grid-template-areas: 'poster content video';
   grid-template-columns: 1fr 2.5fr 1.5fr; }
   .movie-details-body-poster {
     grid-area: poster;
@@ -1280,7 +1326,7 @@ img {
       color: #2980b9; }
       .movie-details-body-content .title:after {
         display: block;
-        content: "";
+        content: '';
         width: 5rem;
         height: 3px;
         background-color: #2980b9;
