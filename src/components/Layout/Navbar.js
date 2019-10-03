@@ -24,13 +24,6 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
 
   const menuRef = useRef(null);
 
-  useEffect(() => {
-    console.log(menuRef);
-    if (menuRef.children) {
-      console.log(menuRef.children[1]);
-    }
-  }, [menuRef]);
-
   const handleClick = e => {
     console.log(e.bubbles);
     Array.from(menuRef.current.children).forEach(child => {

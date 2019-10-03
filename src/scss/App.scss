@@ -674,4 +674,145 @@ img {
   }
 }
 
+// Movie List
+.movie-list {
+  padding-top: 15rem;
+
+  &-title {
+    font-size: 4rem;
+    line-height: 1.2;
+
+    &:after {
+      display: block;
+      content: '';
+      width: 5rem;
+      height: 3px;
+      background-color: $main-color;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &-subtext {
+    font-size: 1.2rem;
+  }
+
+  .genre-select {
+    position: relative;
+    display: inline-block;
+    margin: 1.5rem 0;
+
+    &:hover .genre-choices {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .main-selector {
+      padding: 0.8rem 2.5rem;
+      font-size: 1.5rem;
+      background-color: $main-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        margin-right: 1rem;
+      }
+    }
+
+    .genre-choices {
+      visibility: hidden;
+      opacity: 0;
+      background-color: black;
+      border: 1px solid #fff;
+      position: absolute;
+      z-index: 1;
+      color: $light-color;
+      display: grid;
+      min-width: 35rem;
+      font-size: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      padding: 1rem 1.5rem;
+      @include easeOut;
+
+      li {
+        text-align: center;
+        padding: 0.4rem 0.8rem;
+        @include easeOut;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $light-color;
+          color: $dark-color;
+        }
+      }
+    }
+  }
+
+  .movie-grid {
+    display: grid;
+    margin-top: 4rem;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 4rem;
+
+    .movie-item {
+      &:hover .movie-info {
+        background-color: $main-color;
+
+        h3 {
+          color: $light-color;
+        }
+
+        p {
+          color: darken($light-color, 10);
+        }
+      }
+
+      .poster {
+        position: relative;
+        font-size: 0;
+        line-height: 0;
+        overflow: hidden;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        .rating {
+          position: absolute;
+          top: 2.5rem;
+          left: 0;
+          background-color: $dark-color;
+          font-size: 1.2rem;
+          color: $light-color;
+          display: flex;
+          align-items: center;
+          padding: 0.6rem 0.8rem;
+          opacity: 0.8;
+          p {
+            margin-right: 0.4rem;
+          }
+        }
+      }
+
+      .movie-info {
+        padding: 2rem 0.8rem;
+
+        @include easeOut;
+
+        h3 {
+          font-size: 2rem;
+          color: lighten($main-color, 10);
+          line-height: 1.2;
+        }
+
+        p {
+          font-size: 1.3rem;
+          line-height: 1.2;
+          color: $light-color;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
 @import 'mobile';

@@ -20,7 +20,8 @@ const initialState = {
     GET_NOW_PLAYING: null,
     GET_POPULAR: null,
     GET_TRAILER: null,
-    GET_REVIEWS: null
+    GET_REVIEWS: null,
+    MOVIE_BY_GENRE: null
   },
 
   loading: {
@@ -32,7 +33,8 @@ const initialState = {
     [GET_POPULAR]: true,
     [GET_TRAILER]: true,
     [GET_REVIEWS]: true,
-    ['SEARCH_MOVIES']: true
+    ['SEARCH_MOVIES']: true,
+    ['MOVIE_BY_GENRE']: true
   },
 
   errors: []

@@ -190,3 +190,16 @@ export const searchMovies = query => async dispatch => {
     });
   } catch (err) {}
 };
+
+export const getMovieByGenre = (genreId, page = '1') => async dispatch => {
+  try {
+    const res = await axios.get(
+      `${PATH_BASE}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genreId}&page=${page}`
+    );
+
+    dispatch({
+      type: 'MOVIE_BY_GENRE',
+      payload: res.data
+    });
+  } catch (err) {}
+};

@@ -329,6 +329,10 @@
       justify-content: flex-end;
       align-items: center; }
 
+.movie-list-container {
+  max-width: 1280px;
+  margin: auto; }
+
 /**
  * Swiper 4.5.0
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -1413,3 +1417,100 @@ img {
     padding: 2rem 0 2rem 0; }
     .movie-details-body-video .title {
       font-size: 2.5rem; }
+
+.movie-list {
+  padding-top: 15rem; }
+  .movie-list-title {
+    font-size: 4rem;
+    line-height: 1.2; }
+    .movie-list-title:after {
+      display: block;
+      content: '';
+      width: 5rem;
+      height: 3px;
+      background-color: #2980b9;
+      margin-bottom: 1rem; }
+  .movie-list-subtext {
+    font-size: 1.2rem; }
+  .movie-list .genre-select {
+    position: relative;
+    display: inline-block;
+    margin: 1.5rem 0; }
+    .movie-list .genre-select:hover .genre-choices {
+      visibility: visible;
+      opacity: 1; }
+    .movie-list .genre-select .main-selector {
+      padding: 0.8rem 2.5rem;
+      font-size: 1.5rem;
+      background-color: #2980b9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .movie-list .genre-select .main-selector p {
+        margin-right: 1rem; }
+    .movie-list .genre-select .genre-choices {
+      visibility: hidden;
+      opacity: 0;
+      background-color: black;
+      border: 1px solid #fff;
+      position: absolute;
+      z-index: 1;
+      color: #f4f4f4;
+      display: grid;
+      min-width: 35rem;
+      font-size: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 1rem 1.5rem;
+      transition: all 0.5s ease-out; }
+      .movie-list .genre-select .genre-choices li {
+        text-align: center;
+        padding: 0.4rem 0.8rem;
+        transition: all 0.5s ease-out;
+        cursor: pointer; }
+        .movie-list .genre-select .genre-choices li:hover {
+          background-color: #f4f4f4;
+          color: #333; }
+  .movie-list .movie-grid {
+    display: grid;
+    margin-top: 4rem;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 4rem; }
+    .movie-list .movie-grid .movie-item:hover .movie-info {
+      background-color: #2980b9; }
+      .movie-list .movie-grid .movie-item:hover .movie-info h3 {
+        color: #f4f4f4; }
+      .movie-list .movie-grid .movie-item:hover .movie-info p {
+        color: #dbdbdb; }
+    .movie-list .movie-grid .movie-item .poster {
+      position: relative;
+      font-size: 0;
+      line-height: 0;
+      overflow: hidden;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+      .movie-list .movie-grid .movie-item .poster .rating {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        background-color: #333;
+        font-size: 1.2rem;
+        color: #f4f4f4;
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 0.8rem;
+        opacity: 0.8; }
+        .movie-list .movie-grid .movie-item .poster .rating p {
+          margin-right: 0.4rem; }
+    .movie-list .movie-grid .movie-item .movie-info {
+      padding: 2rem 0.8rem;
+      transition: all 0.5s ease-out; }
+      .movie-list .movie-grid .movie-item .movie-info h3 {
+        font-size: 2rem;
+        color: #409ad5;
+        line-height: 1.2; }
+      .movie-list .movie-grid .movie-item .movie-info p {
+        font-size: 1.3rem;
+        line-height: 1.2;
+        color: #f4f4f4;
+        margin-top: 0.5rem; }
