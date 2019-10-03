@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useTransition, animated, config } from 'react-spring';
 import { Link } from 'react-router-dom';
 import { TvGenre, movieGenre } from '../../constants/Genre';
+import InProgress from '../Layout/InProgress';
 
 const Header = ({ movies }) => {
   const [index, set] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const transitions = useTransition(movies[index], item => item.id, {
     from: { opacity: 0 },
@@ -59,7 +61,11 @@ const Header = ({ movies }) => {
                 <p>More info</p>
                 <div className='overlay'></div>
               </Link>
-              <Link to='/' className='btn-second'>
+              <Link
+                to='/'
+                className='btn-second'
+                onClick={() => setShowModal(true)}
+              >
                 <p>Add to list</p>
                 <div className='overlay'></div>
               </Link>
@@ -67,6 +73,17 @@ const Header = ({ movies }) => {
           </div>
         </animated.div>
       ))}
+      {/* <Modal
+        className={`modal ${showModal ? 'show' : ''}`}
+        title='Warning'
+        content='This feature has not been published. Please be patient :)'
+        onDismiss={() => {
+          setShowModal(false);
+        }}
+        actions={closeAction}
+      /> */}
+
+      <InProgress showModal={showModal} setShowModal={setShowModal} />
     </header>
   );
 };

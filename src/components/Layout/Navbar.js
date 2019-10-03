@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
@@ -6,17 +6,38 @@ import { searchMovies } from '../../actions/movie';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import store from '../../store';
+import InProgress from '../Layout/InProgress';
 
 const Navbar = ({ searchMovies, searchResult, loading, history }) => {
   const onSearchSubmit = debounce(e => {
     searchMovies(e.target.value);
   }, 350);
+
+  const [showModal, setShowModal] = useState(false);
+  const [current, setCurrent] = useState('current');
   function routeToItem(item) {
     store.dispatch({
       type: 'MOVIE_LOADING'
     });
     history.push(`/movie/details/${item.id}`);
   }
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    console.log(menuRef);
+    if (menuRef.children) {
+      console.log(menuRef.children[1]);
+    }
+  }, [menuRef]);
+
+  const handleClick = e => {
+    console.log(e.bubbles);
+    Array.from(menuRef.current.children).forEach(child => {
+      return child.classList.remove('current');
+    });
+    e.currentTarget.classList.add('current');
+  };
   resetIdCounter();
   return (
     <div className='navbar'>
@@ -27,23 +48,23 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
               <h2 className='menu-logo'>movieDB</h2>
             </Link>
 
-            <ul className='menu-nav'>
-              <li className='nav-item current'>
+            <ul className='menu-nav' ref={menuRef}>
+              <li className='nav-item current' onClick={e => handleClick(e)}>
                 <Link to='/' className='nav-link '>
                   Home
                 </Link>
               </li>
-              <li className='nav-item'>
-                <Link to='/' className='nav-link'>
+              <li className='nav-item' onClick={e => handleClick(e)}>
+                <Link to='/movies/all' className='nav-link'>
                   Movies
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item' onClick={e => handleClick(e)}>
                 <Link to='/' className='nav-link'>
                   TV Shows
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-item' onClick={e => handleClick(e)}>
                 <Link to='/' className='nav-link'>
                   Discover
                 </Link>
@@ -135,10 +156,15 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
                 <i className='fas fa-search'></i>
               </button>
             </form>
-            <div className='menu-right-user-placeholder'></div>
+            <div
+              onClick={() => setShowModal(true)}
+              className='menu-right-user-placeholder'
+            ></div>
           </div>
         </nav>
       </div>
+
+      <InProgress showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };

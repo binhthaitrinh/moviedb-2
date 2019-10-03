@@ -4,6 +4,7 @@ import { Navbar, ScrollToTop } from './components/Layout';
 import Landing from './components/Landing';
 import MovieDetail from './components/Movie/MovieDetail';
 import { createBrowserHistory } from 'history';
+import MovieList from './components/MovieList/MovieList';
 
 import './App.css';
 
@@ -19,7 +20,8 @@ function App() {
           <Route exact path='/' component={Landing} />
           <Switch>
             <Route exact path='/:type/details/:id' component={MovieDetail} />
-            <Route exact path='/:type/details/:d' component={MovieDetail} />
+
+            <Route exact path='/movies/all' component={MovieList} />
           </Switch>
         </Fragment>
       </ScrollToTop>
