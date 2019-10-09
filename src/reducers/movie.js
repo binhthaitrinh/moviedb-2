@@ -59,7 +59,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: {
-          ['GET_DETAIL']: true
+          ['GET_DETAIL']: true,
+          ['MOVIE_BY_GENRE']: true
         }
       };
     case contentType:

@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import { Navbar, ScrollToTop } from './components/Layout';
+import { Navbar, ScrollToTop, Footer } from './components/Layout';
 import Landing from './components/Landing';
 import MovieDetail from './components/Movie/MovieDetail';
 import { createBrowserHistory } from 'history';
@@ -20,9 +20,14 @@ function App() {
           <Route exact path='/' component={Landing} />
           <Switch>
             <Route exact path='/:type/details/:id' component={MovieDetail} />
-
-            <Route exact path='/movies/all' component={MovieList} />
+            <Route
+              exact
+              path='/movies/all/:genre/page=:page'
+              component={MovieList}
+            />
+            <Route exact path='/movies/all/:genre' component={MovieList} />
           </Switch>
+          <Footer />
         </Fragment>
       </ScrollToTop>
     </Router>

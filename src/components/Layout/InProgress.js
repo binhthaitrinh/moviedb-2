@@ -19,6 +19,7 @@ const InProgress = ({ showModal, setShowModal }) => {
         setShowModal(false);
       }}
       actions={closeAction}
+      showModal={showModal}
     />
   );
 };

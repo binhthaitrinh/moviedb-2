@@ -48,7 +48,7 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
                 </Link>
               </li>
               <li className='nav-item' onClick={e => handleClick(e)}>
-                <Link to='/movies/all' className='nav-link'>
+                <Link to='/movies/all/comedy' className='nav-link'>
                   Movies
                 </Link>
               </li>
