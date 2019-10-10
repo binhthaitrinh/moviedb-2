@@ -8,13 +8,34 @@ import { withRouter } from 'react-router';
 import store from '../../store';
 import InProgress from '../Layout/InProgress';
 
+const links = [
+  {
+    url: '/',
+    title: 'Home'
+  },
+  {
+    url: '/movie/all/comedy',
+    title: 'Movies'
+  },
+  {
+    url: '/tv/all/comedy',
+    title: 'Tv Shows'
+  }
+];
+
 const Navbar = ({ searchMovies, searchResult, loading, history }) => {
   const onSearchSubmit = debounce(e => {
-    searchMovies(e.target.value);
+    searchMovies(e.target.value, 5);
   }, 350);
 
+  const [current, setCurrent] = useState(window.location.pathname);
+
+  useEffect(() => {
+    setCurrent(window.location.pathname);
+  }, [window.location.pathname]);
+
   const [showModal, setShowModal] = useState(false);
-  const [current, setCurrent] = useState('current');
+
   function routeToItem(item) {
     store.dispatch({
       type: 'MOVIE_LOADING'
@@ -22,15 +43,15 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
     history.push(`/movie/details/${item.id}`);
   }
 
-  const menuRef = useRef(null);
+  // const menuRef = useRef(null);
 
-  const handleClick = e => {
-    console.log(e.bubbles);
-    Array.from(menuRef.current.children).forEach(child => {
-      return child.classList.remove('current');
-    });
-    e.currentTarget.classList.add('current');
-  };
+  // const handleClick = e => {
+  //   console.log(e.bubbles);
+  //   Array.from(menuRef.current.children).forEach(child => {
+  //     return child.classList.remove('current');
+  //   });
+  //   e.currentTarget.classList.add('current');
+  // };
   resetIdCounter();
   return (
     <div className='navbar'>
@@ -41,27 +62,35 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
               <h2 className='menu-logo'>movieDB</h2>
             </Link>
 
-            <ul className='menu-nav' ref={menuRef}>
-              <li className='nav-item current' onClick={e => handleClick(e)}>
+            <ul className='menu-nav'>
+              {links.map((link, index) => (
+                <li
+                  className={
+                    current === link.url ? 'nav-item current' : 'nav-item'
+                  }
+                  // onClick={e => handleClick(e)}
+                  key={index}
+                >
+                  <Link to={link.url} className='nav-link'>
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+              {/* <li className='nav-item current' onClick={e => handleClick(e)}>
                 <Link to='/' className='nav-link '>
                   Home
                 </Link>
               </li>
               <li className='nav-item' onClick={e => handleClick(e)}>
-                <Link to='/movies/all/comedy' className='nav-link'>
+                <Link to='/movie/all/comedy' className='nav-link'>
                   Movies
                 </Link>
               </li>
               <li className='nav-item' onClick={e => handleClick(e)}>
-                <Link to='/' className='nav-link'>
+                <Link to='/tv/all/comedy' className='nav-link'>
                   TV Shows
                 </Link>
-              </li>
-              <li className='nav-item' onClick={e => handleClick(e)}>
-                <Link to='/' className='nav-link'>
-                  Discover
-                </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -163,8 +192,8 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
 };
 
 const mapStateToProps = state => ({
-  searchResult: state.movie.movie.SEARCH_MOVIES,
-  loading: state.movie.loading.SEARCH_MOVIES
+  searchResult: state.movie.movie.SEARCH_MOVIES_SHORT,
+  loading: state.movie.loading.SEARCH_MOVIES_SHORT
 });
 
 export default connect(

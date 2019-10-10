@@ -7,10 +7,14 @@ const Spinner = () => {
       style={{
         width: '5rem',
         margin: 'auto',
-        display: 'block'
+        display: 'block',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
       }}
       src={spinner}
-      alt="Loading..."
+      alt='Loading...'
     />
   );
 };

@@ -21,7 +21,9 @@ const initialState = {
     GET_POPULAR: null,
     GET_TRAILER: null,
     GET_REVIEWS: null,
-    MOVIE_BY_GENRE: null
+    MOVIE_BY_GENRE: null,
+    SEARCH_MOVIES_SHORT: null,
+    SEARCH_MOVIES: null
   },
 
   loading: {
@@ -34,6 +36,7 @@ const initialState = {
     [GET_TRAILER]: true,
     [GET_REVIEWS]: true,
     ['SEARCH_MOVIES']: true,
+    ['SEARCH_MOVIES_SHORT']: true,
     ['MOVIE_BY_GENRE']: true
   },
 
@@ -59,6 +62,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: {
+          ...state.loading,
           ['GET_DETAIL']: true,
           ['MOVIE_BY_GENRE']: true
         }

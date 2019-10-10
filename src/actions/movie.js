@@ -178,23 +178,34 @@ export const getReviews = (id, type = 'movie') => async dispatch => {
   } catch (err) {}
 };
 
-export const searchMovies = query => async dispatch => {
+export const searchMovies = (query, limit = 1000) => async dispatch => {
   try {
     const res = await axios.get(
       `${PATH_BASE}/search/multi/?api_key=${API_KEY}&query=${query}`
     );
 
-    dispatch({
-      type: 'SEARCH_MOVIES',
-      payload: res.data.results.splice(0, 5)
-    });
+    if (limit === 5) {
+      dispatch({
+        type: 'SEARCH_MOVIES_SHORT',
+        payload: res.data.results.splice(0, limit)
+      });
+    } else {
+      dispatch({
+        type: 'SEARCH_MOVIES',
+        payload: res.data.results
+      });
+    }
   } catch (err) {}
 };
 
-export const getMovieByGenre = (genreId, page = '1') => async dispatch => {
+export const getMovieByGenre = (
+  genreId,
+  page = '1',
+  type = 'movie'
+) => async dispatch => {
   try {
     const res = await axios.get(
-      `${PATH_BASE}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genreId}&page=${page}`
+      `${PATH_BASE}/discover/${type}?api_key=${API_KEY}&language=en-US&with_genres=${genreId}&page=${page}`
     );
 
     dispatch({

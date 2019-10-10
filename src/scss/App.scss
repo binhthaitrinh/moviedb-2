@@ -672,24 +672,26 @@ img {
   }
 }
 
+.section-title {
+  font-size: 4rem;
+  line-height: 1.2;
+
+  &:after {
+    display: block;
+    content: '';
+    width: 5rem;
+    height: 3px;
+    background-color: $main-color;
+    margin-bottom: 1rem;
+  }
+}
+
 // Movie List
 .movie-list {
   padding-top: 15rem;
   padding-bottom: 15rem;
-
-  &-title {
-    font-size: 4rem;
-    line-height: 1.2;
-
-    &:after {
-      display: block;
-      content: '';
-      width: 5rem;
-      height: 3px;
-      background-color: $main-color;
-      margin-bottom: 1rem;
-    }
-  }
+  min-height: 100vh;
+  position: relative;
 
   &-subtext {
     font-size: 1.2rem;
@@ -737,6 +739,7 @@ img {
 
       .genre-choice {
         color: $light-color;
+        align-self: center;
         text-align: center;
         padding: 0.4rem 0.8rem;
         @include easeOut;
@@ -750,84 +753,14 @@ img {
     }
   }
 
-  .movie-grid {
-    display: grid;
-    margin-top: 4rem;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 4rem;
-
-    .movie-item {
-      &:hover .movie-info {
-        h3 {
-          color: $secondary-color;
-          background-color: $main-color;
-        }
-
-        p {
-          color: darken($light-color, 10);
-        }
-      }
-
-      .poster {
-        position: relative;
-        font-size: 0;
-        line-height: 0;
-        overflow: hidden;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-
-        img {
-          height: 30rem;
-          object-fit: cover;
-        }
-        .rating {
-          position: absolute;
-          top: 2.5rem;
-          left: 0;
-          background-color: $dark-color;
-          font-size: 1.2rem;
-          color: $light-color;
-          display: flex;
-          align-items: center;
-          padding: 0.6rem 0.8rem;
-          opacity: 0.8;
-          p {
-            margin-right: 0.4rem;
-          }
-        }
-      }
-
-      .movie-info {
-        padding: 2rem 0.2rem;
-        min-height: 10rem;
-
-        @include easeOut;
-
-        h3 {
-          font-size: 2rem;
-          color: lighten($main-color, 10);
-          line-height: 1.2;
-          display: inline-block;
-          padding: 0.3rem 0.6rem;
-          border-radius: 2px;
-          @include easeOut;
-        }
-
-        p {
-          font-size: 1.3rem;
-          line-height: 1.2;
-          color: $light-color;
-          margin-top: 0.5rem;
-          padding: 0.3rem 0.6rem;
-        }
-      }
-    }
-  }
-
   .pagination {
     display: flex;
     justify-content: center;
     margin-top: 5rem;
+    position: absolute;
+    bottom: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -840,6 +773,85 @@ img {
     text-align: center;
     font-size: 1.4rem;
   }
+}
+
+.movie-grid {
+  display: grid;
+  margin-top: 4rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 4rem;
+
+  .movie-item {
+    &:hover .movie-info {
+      h3 {
+        color: $secondary-color;
+        background-color: $main-color;
+      }
+
+      p {
+        color: darken($light-color, 10);
+      }
+    }
+
+    .poster {
+      position: relative;
+      font-size: 0;
+      line-height: 0;
+      overflow: hidden;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+
+      img {
+        height: 30rem;
+        object-fit: cover;
+      }
+      .rating {
+        position: absolute;
+        top: 2.5rem;
+        left: 0;
+        background-color: $dark-color;
+        font-size: 1.2rem;
+        color: $light-color;
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 0.8rem;
+        opacity: 0.8;
+        p {
+          margin-right: 0.4rem;
+        }
+      }
+    }
+
+    .movie-info {
+      padding: 2rem 0.2rem;
+      min-height: 10rem;
+
+      @include easeOut;
+
+      h3 {
+        font-size: 2rem;
+        color: lighten($main-color, 10);
+        line-height: 1.2;
+        display: inline-block;
+        padding: 0.3rem 0.6rem;
+        border-radius: 2px;
+        @include easeOut;
+      }
+
+      p {
+        font-size: 1.3rem;
+        line-height: 1.2;
+        color: $light-color;
+        margin-top: 0.5rem;
+        padding: 0.3rem 0.6rem;
+      }
+    }
+  }
+}
+
+.section-search-result {
+  min-height: calc(100vh - 89px);
+  padding-top: 15rem;
 }
 
 .alert-enter {

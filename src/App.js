@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import MovieDetail from './components/Movie/MovieDetail';
 import { createBrowserHistory } from 'history';
 import MovieList from './components/MovieList/MovieList';
+import SearchResult from './components/Movie/SearchResult';
 
 import './App.css';
 
@@ -22,10 +23,11 @@ function App() {
             <Route exact path='/:type/details/:id' component={MovieDetail} />
             <Route
               exact
-              path='/movies/all/:genre/page=:page'
+              path='/:type/all/:genre/page=:page'
               component={MovieList}
             />
-            <Route exact path='/movies/all/:genre' component={MovieList} />
+            <Route exact path='/:type/all/:genre' component={MovieList} />
+            <Route exact path='/search/q=:query' component={SearchResult} />
           </Switch>
           <Footer />
         </Fragment>
