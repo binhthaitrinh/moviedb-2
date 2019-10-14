@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { searchMovies, getCredit } from '../../actions/movie';
+import { searchMovies } from '../../actions/movie';
 import { movieGenre, TvGenre } from '../../constants/Genre';
 import Spinner from '../Layout/Spinner';
 import { Link } from 'react-router-dom';
@@ -38,7 +38,11 @@ const SearchResult = ({ match, searchMovies, movies, loading }) => {
         ) : (
           <div className='movie-grid'>
             {movies.map(movie => (
-              <Link to='/' key={movie.id} className='movie-item'>
+              <Link
+                to={`/${movie.media_type}/details/${movie.id}`}
+                key={movie.id}
+                className='movie-item'
+              >
                 <div className='poster'>
                   {movie.poster_path ? (
                     <img
@@ -57,7 +61,12 @@ const SearchResult = ({ match, searchMovies, movies, loading }) => {
                 <div className='movie-info'>
                   {' '}
                   <h3>{movie.title || movie.name}</h3>
-                  <p> {movie.genre_ids.map(id => helper(id)).join(' - ')}</p>
+                  <p>
+                    {' '}
+                    {movie.genre_ids && movie.genre_ids.length
+                      ? movie.genre_ids.map(id => helper(id)).join(' - ')
+                      : 'Not Available'}
+                  </p>
                 </div>
               </Link>
             ))}

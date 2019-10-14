@@ -8,7 +8,7 @@ const MovieCarousels = ({ movies, type = 'movie' }) => {
 
   useEffect(() => {
     console.log(type);
-    const slider = new Swiper(swiperRef.current, {
+    new Swiper(swiperRef.current, {
       slidesPerView: 5,
       spaceBetween: 30,
       slidesPerGroup: 1,

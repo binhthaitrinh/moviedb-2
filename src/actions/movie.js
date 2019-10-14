@@ -13,9 +13,9 @@ import {
 
 import { API_KEY, PATH_BASE } from '../constants/movieDB';
 
-const config = {
-  headers: null
-};
+// const config = {
+//   headers: null
+// };
 
 export const getTrending = () => async dispatch => {
   try {

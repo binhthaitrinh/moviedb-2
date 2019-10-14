@@ -35,9 +35,9 @@ const initialState = {
     [GET_POPULAR]: true,
     [GET_TRAILER]: true,
     [GET_REVIEWS]: true,
-    ['SEARCH_MOVIES']: true,
-    ['SEARCH_MOVIES_SHORT']: true,
-    ['MOVIE_BY_GENRE']: true
+    SEARCH_MOVIES: true,
+    SEARCH_MOVIES_SHORT: true,
+    MOVIE_BY_GENRE: true
   },
 
   errors: []
@@ -63,8 +63,8 @@ export default function(state = initialState, action) {
         ...state,
         loading: {
           ...state.loading,
-          ['GET_DETAIL']: true,
-          ['MOVIE_BY_GENRE']: true
+          GET_DETAIL: true,
+          MOVIE_BY_GENRE: true
         }
       };
     case contentType:

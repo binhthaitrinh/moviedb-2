@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
@@ -95,89 +95,95 @@ const Navbar = ({ searchMovies, searchResult, loading, history }) => {
           </div>
 
           <div className='menu-right'>
-            <form action=''>
-              <Downshift
-                onChange={routeToItem}
-                itemToString={item => (item === null ? '' : item.title)}
-              >
-                {({
-                  getInputProps,
-                  getItemProps,
-                  isOpen,
-                  inputValue,
-                  highlightedIndex
-                }) => (
-                  <div>
-                    <input
-                      {...getInputProps({
-                        type: 'text',
-                        placeholder: 'Enter a movie name',
-                        className: 'menu-right-search-bar',
-                        onChange: e => {
-                          e.persist();
-                          onSearchSubmit(e);
-                        }
-                      })}
-                    />
-                    {isOpen && (
-                      <div className='result-container'>
-                        {loading
-                          ? null
-                          : searchResult.map((item, index) => (
-                              <Link
-                                to={`/movie/details/${item.id}`}
-                                {...getItemProps({ item })}
-                                className={
-                                  index === highlightedIndex
-                                    ? 'result-item highlighted'
-                                    : 'result-item'
-                                }
-                                key={item.id}
-                              >
-                                <img
-                                  src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
-                                  alt='icon'
-                                />
-                                <div className='result-item-detail'>
-                                  <h4>
-                                    {item.title ||
-                                      item.name ||
-                                      'Title not available'}
-                                  </h4>
-                                </div>
-                              </Link>
-                              // <li {...getItemProps({ item })} key={item.id}>
-                              //   {item.title}
-                              // </li>
-                            ))}
-                        {loading
-                          ? null
-                          : searchResult.length >= 4 && (
-                              <Link
-                                to={`/search/q=${inputValue}`}
-                                className='see-more'
-                              >
-                                See more...
-                              </Link>
-                            )}
-                        {loading
-                          ? null
-                          : !searchResult.length && (
-                              <div className='result-item'>
-                                Nothing found {inputValue}{' '}
+            <Downshift
+              onChange={routeToItem}
+              itemToString={item => (item === null ? '' : item.title)}
+            >
+              {({
+                getInputProps,
+                getItemProps,
+                isOpen,
+                inputValue,
+                highlightedIndex,
+                closeMenu
+              }) => (
+                <form
+                  onSubmit={e => {
+                    e.preventDefault();
+                    history.push(`/search/q=${inputValue}`);
+                    closeMenu();
+                    inputValue = '';
+                  }}
+                >
+                  <input
+                    {...getInputProps({
+                      type: 'text',
+                      placeholder: 'Enter a movie name',
+                      className: 'menu-right-search-bar',
+                      onChange: e => {
+                        e.persist();
+                        onSearchSubmit(e);
+                      }
+                    })}
+                  />
+                  {isOpen && (
+                    <div className='result-container'>
+                      {loading
+                        ? null
+                        : searchResult.map((item, index) => (
+                            <Link
+                              to={`/movie/details/${item.id}`}
+                              {...getItemProps({ item })}
+                              className={
+                                index === highlightedIndex
+                                  ? 'result-item highlighted'
+                                  : 'result-item'
+                              }
+                              key={item.id}
+                            >
+                              <img
+                                src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                                alt='icon'
+                              />
+                              <div className='result-item-detail'>
+                                <h4>
+                                  {item.title ||
+                                    item.name ||
+                                    'Title not available'}
+                                </h4>
                               </div>
-                            )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Downshift>
+                            </Link>
+                            // <li {...getItemProps({ item })} key={item.id}>
+                            //   {item.title}
+                            // </li>
+                          ))}
+                      {loading
+                        ? null
+                        : searchResult.length >= 4 && (
+                            <Link
+                              to={`/search/q=${inputValue}`}
+                              className='see-more'
+                            >
+                              See more...
+                            </Link>
+                          )}
+                      {loading
+                        ? null
+                        : !searchResult.length && (
+                            <div className='result-item'>
+                              Nothing found {inputValue}{' '}
+                            </div>
+                          )}
+                    </div>
+                  )}
+                  <button className='menu-right-search-btn'>
+                    {' '}
+                    <i className='fas fa-search'></i>
+                  </button>
+                </form>
+              )}
+            </Downshift>
 
-              <button className='menu-right-search-btn'>
-                {' '}
-                <i className='fas fa-search'></i>
-              </button>
-            </form>
             <div
               onClick={() => setShowModal(true)}
               className='menu-right-user-placeholder'
